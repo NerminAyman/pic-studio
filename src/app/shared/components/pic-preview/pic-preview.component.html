@@ -1,0 +1,19 @@
+<div class="pic-preview">
+  <ion-icon class="absolute m-5 text-2xl rounded-full p-2 back-icon" color="light"
+            name="arrow-back" (click)="closePreview()">
+  </ion-icon>
+  <ion-img class="w-full h-screen object-cover"
+           src="{{picPath}}"
+  ></ion-img>
+  <div class="absolute bottom-0 w-full mb-8 flex justify-center gap-8">
+    <ion-icon *ngIf="!isMyPic && !isFavourite" class="text-4xl" color="light"
+              name="heart-outline" (click)="toggleFavourite(pic, true)"></ion-icon>
+    <ion-icon *ngIf="!isMyPic && isFavourite" class="text-4xl" color="light"
+              name="heart" (click)="toggleFavourite(pic, false)"></ion-icon>
+    <ion-icon *ngIf="!isMyPic" class="text-4xl" color="light"
+              name="download" (click)="downloadPic(pic.src.portrait, pic.id.toString())"></ion-icon>
+    <ion-icon *ngIf="isMyPic" class="text-4xl" color="light"
+              name="trash" (click)="showActionSheet()">
+    </ion-icon>
+  </div>
+</div>

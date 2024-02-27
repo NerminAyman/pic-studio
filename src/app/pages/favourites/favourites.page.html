@@ -1,0 +1,13 @@
+<ion-content [fullscreen]="true">
+  <div class="page-layout">
+    <app-page-title [title]="'Favourites'"></app-page-title>
+    <div class="flex flex-wrap flex-row gap-5 align-middle justify-center">
+      <ng-container *ngFor="let pic of favouritePics">
+        <ion-img class="h-48 object-cover rounded"
+                 src="{{pic.src.portrait}}"
+                 alt="{{pic.alt}}" (click)="showPreview(pic)"
+        ></ion-img>
+      </ng-container>
+    </div>
+  </div>
+</ion-content>

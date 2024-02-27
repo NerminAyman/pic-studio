@@ -1,0 +1,18 @@
+<ion-content [fullscreen]="true">
+  <div class="page-layout">
+    <app-page-title [title]="'Home'"></app-page-title>
+    <div class="flex flex-wrap flex-row gap-5 align-middle justify-center">
+      <ng-container *ngFor="let pic of pics" class="relative">
+        <ion-img class="h-48 object-cover rounded"
+                 src="{{pic.src.portrait}}"
+                 alt="{{pic.alt}}" (click)="showPreview(pic)"
+        ></ion-img>
+      </ng-container>
+      <ng-container *ngIf="canLoadMore">
+        <ion-infinite-scroll (ionInfinite)="loadMorePics($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ng-container>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,18 @@
+<ion-content [fullscreen]="true">
+  <div class="page-layout">
+    <app-page-title [title]="'My Pics'"></app-page-title>
+    <div class="flex flex-wrap flex-row gap-5 align-middle justify-center">
+      <ng-container *ngFor="let pic of pics; index as index">
+        <ion-img class="h-48 object-cover rounded"
+                 src="{{pic.webviewPath}}" (click)="showPreview(pic, index)"
+        ></ion-img>
+      </ng-container>
+    </div>
+  </div>
+</ion-content>
+<ion-fab vertical="bottom" horizontal="center"
+         slot="fixed" (click)="addPhotoToGallery()">
+  <ion-fab-button color="danger">
+    <ion-icon name="camera"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

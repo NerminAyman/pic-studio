@@ -1,0 +1,11 @@
+.tab-selected {
+  ion-icon {
+    //fill: var(--ion-color-danger);
+    fill: var(--ion-color-primary-contrast);
+  }
+
+  ion-label {
+    //color: var(--ion-color-danger);
+    color: var(--ion-color-primary-contrast);
+  }
+}

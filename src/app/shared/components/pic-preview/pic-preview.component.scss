@@ -1,0 +1,10 @@
+.pic-preview {
+  ion-img::part(image) {
+    border-radius: 0;
+    width: 100%;
+  }
+
+  .back-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
