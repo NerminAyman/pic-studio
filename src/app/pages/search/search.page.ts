@@ -21,6 +21,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {addIcons} from "ionicons";
 import {search, arrowBack} from "ionicons/icons";
 import {Keyboard} from "@capacitor/keyboard";
+import {ModalService} from "../../shared/services/modal/modal.service";
 
 @Component({
   selector: 'app-search',
@@ -40,7 +41,7 @@ export class SearchPage implements OnInit {
   canLoadMore: boolean = true;
 
   constructor(private picsService: PicsService,
-              private modalController: ModalController) {
+              private modalService: ModalService) {
     addIcons({search, arrowBack})
   }
 
@@ -84,14 +85,10 @@ export class SearchPage implements OnInit {
   }
 
   async showPreview(pic: IPic) {
-    const modal = await this.modalController.create({
-      component: PicPreviewComponent,
-      componentProps: {
-        pic: pic,
-        picPath: pic.src.portrait,
-        isMyPic: false,
-      }
-    });
-    modal.present();
+    this.modalService.openModal({
+      pic: pic,
+      picPath: pic.src.portrait,
+      isMyPic: false,
+    })
   }
 }

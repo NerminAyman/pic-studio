@@ -1,12 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {
   IonApp,
   IonRouterOutlet
 } from '@ionic/angular/standalone';
 import {TabsComponent} from "./shared/components/tabs/tabs.component";
 import {defineCustomElements} from "@ionic/pwa-elements/loader";
-import {Subscription} from "rxjs";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -16,10 +14,7 @@ import {Router} from "@angular/router";
 })
 export class AppComponent{
 
-  isSearchPage: boolean = false;
-  subscriptions: Subscription [] = [];
-
-  constructor(private route: Router) {
+  constructor() {
     defineCustomElements(window)
   }
 }

@@ -14,6 +14,7 @@ import {PicsService} from "../../shared/services/pics/pics.service";
 import {InfiniteScrollCustomEvent} from "@ionic/angular/standalone";
 import {NgForOf, NgIf} from "@angular/common";
 import {PicPreviewComponent} from "../../shared/components/pic-preview/pic-preview.component";
+import {ModalService} from "../../shared/services/modal/modal.service";
 
 @Component({
   selector: 'app-home',
@@ -32,7 +33,7 @@ export class HomePage implements OnInit {
   canLoadMore: boolean = true;
 
   constructor(private picsService: PicsService,
-              private modalController: ModalController) {
+              private modalService: ModalService) {
   }
 
   ngOnInit(): void {
@@ -65,23 +66,13 @@ export class HomePage implements OnInit {
     }
   };
 
-  search(newKeyword: string) {
-    this.currentPage = 1;
-    this.totalLoadedItems = 10;
-    this.canLoadMore = true;
-    this.keyword = newKeyword;
-    this.loadPics(this.currentPage, newKeyword, false);
-  }
-
   async showPreview(pic: IPic) {
-    const modal = await this.modalController.create({
-      component: PicPreviewComponent,
-      componentProps: {
+    this.modalService.openModal(
+      {
         pic: pic,
         picPath: pic.src.portrait,
         isMyPic: false,
       }
-    });
-    modal.present();
+    );
   }
 }

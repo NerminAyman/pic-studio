@@ -11,7 +11,7 @@ import {
 import {PageTitleComponent} from "../../shared/components/page-title/page-title.component";
 import {IPic} from "../../shared/interfaces/pics.interface";
 import {PicsService} from "../../shared/services/pics/pics.service";
-import {PicPreviewComponent} from "../../shared/components/pic-preview/pic-preview.component";
+import {ModalService} from "../../shared/services/modal/modal.service";
 
 @Component({
   selector: 'app-favourites',
@@ -25,7 +25,7 @@ export class FavouritesPage implements ViewWillEnter {
   favouritePics: any [] = [];
 
   constructor(private picsService: PicsService,
-              private modalController: ModalController) {
+              private modalService: ModalService) {
   }
 
   async ionViewWillEnter() {
@@ -41,18 +41,15 @@ export class FavouritesPage implements ViewWillEnter {
   }
 
   async showPreview(pic: IPic) {
-    const modal = await this.modalController.create({
-      component: PicPreviewComponent,
-      componentProps: {
+    this.modalService.openModal(
+      {
         pic: pic,
         picPath: pic.src.portrait,
         isMyPic: false,
+      }).then(val => {
+      if (val.data && val.data.favouriteToggled) {
+        this.loadFavourites();
       }
     });
-    modal.present();
-    const {data, role} = await modal.onWillDismiss();
-    if (data && data.favouriteToggled) {
-      this.loadFavourites();
-    }
   }
 }

@@ -16,6 +16,7 @@ import {MyPicsService} from "../../shared/services/my-pics/my-pics.service";
 import {addIcons} from "ionicons";
 import {camera} from "ionicons/icons";
 import {PicPreviewComponent} from "../../shared/components/pic-preview/pic-preview.component";
+import {ModalService} from "../../shared/services/modal/modal.service";
 
 @Component({
   selector: 'app-my-pics',
@@ -29,7 +30,7 @@ export class MyPicsPage implements OnInit {
   pics: UserPic [] = [];
 
   constructor(private myPicsService: MyPicsService,
-              private modalController: ModalController) {
+              private modalService: ModalService) {
     addIcons({camera});
   }
 
@@ -43,18 +44,15 @@ export class MyPicsPage implements OnInit {
   }
 
   async showPreview(pic: UserPic, index: number) {
-    const modal = await this.modalController.create({
-      component: PicPreviewComponent,
-      componentProps: {
+    this.modalService.openModal(
+      {
         picPath: pic.webviewPath,
         index: index,
         isMyPic: true,
+      }).then(val => {
+      if (val.data) {
+        this.myPicsService.deletePicture(this.pics[val.data.index], val.data.index);
       }
     });
-    modal.present();
-    const {data, role} = await modal.onWillDismiss();
-    if (data) {
-      this.myPicsService.deletePicture(this.pics[data.index], data.index);
-    }
   }
 }
