@@ -10,13 +10,11 @@ import {
   IonInfiniteScrollContent,
   IonInput,
   IonTitle, IonToolbar,
-  ModalController,
 } from '@ionic/angular/standalone';
 import {PageTitleComponent} from "../../shared/components/page-title/page-title.component";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {IPic} from "../../shared/interfaces/pics.interface";
 import {PicsService} from "../../shared/services/pics/pics.service";
-import {PicPreviewComponent} from "../../shared/components/pic-preview/pic-preview.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {addIcons} from "ionicons";
 import {search, arrowBack} from "ionicons/icons";

@@ -9,13 +9,12 @@ import {
   IonGrid,
   IonIcon,
   IonImg,
-  IonRow, ModalController
+  IonRow,
 } from "@ionic/angular/standalone";
 import {UserPic} from "../../shared/interfaces/pics.interface";
 import {MyPicsService} from "../../shared/services/my-pics/my-pics.service";
 import {addIcons} from "ionicons";
 import {camera} from "ionicons/icons";
-import {PicPreviewComponent} from "../../shared/components/pic-preview/pic-preview.component";
 import {ModalService} from "../../shared/services/modal/modal.service";
 
 @Component({

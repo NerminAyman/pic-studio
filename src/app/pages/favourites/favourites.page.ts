@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   IonContent,
@@ -6,7 +6,7 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonTitle,
-  ModalController, ViewWillEnter
+  ViewWillEnter
 } from "@ionic/angular/standalone";
 import {PageTitleComponent} from "../../shared/components/page-title/page-title.component";
 import {IPic} from "../../shared/interfaces/pics.interface";
